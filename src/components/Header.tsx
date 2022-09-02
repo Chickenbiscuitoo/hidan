@@ -13,7 +13,9 @@ const Header: NextPage = () => {
 	return (
 		<div className="navbar bg-base-100">
 			<div className="flex-1">
-				<a className="btn btn-ghost normal-case text-xl">hidan</a>
+				<a className="btn btn-ghost normal-case text-xl font-bold">
+					hidan
+				</a>
 			</div>
 			<div className="flex-none">
 				<div className="dropdown dropdown-end">
@@ -31,6 +33,11 @@ const Header: NextPage = () => {
 					</label>
 					{isMenuOpen && (
 						<ul className="menu menu-compact absolute mt-3 p-2 shadow bg-base-100 rounded-box w-50 top-10 right-1">
+							<li>
+								<h5 className="font-semibold inline">
+									{session?.user?.name?.split(' ')[0]}
+								</h5>
+							</li>
 							<li>
 								<a>
 									<FiSettings />
