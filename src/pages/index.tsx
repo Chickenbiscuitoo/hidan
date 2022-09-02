@@ -1,10 +1,14 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { useSession } from 'next-auth/react'
+
 import { AiFillGithub } from 'react-icons/ai'
 
 import Header from '../components/Header'
 
 const Home: NextPage = () => {
+	useSession({ required: true })
+
 	return (
 		<div className="mx-10">
 			<Head>

@@ -1,6 +1,7 @@
 import { NextPage } from 'next'
 import { useSession, signOut } from 'next-auth/react'
 import { useState } from 'react'
+
 import { BiLogOutCircle } from 'react-icons/bi'
 import { FiSettings } from 'react-icons/fi'
 
