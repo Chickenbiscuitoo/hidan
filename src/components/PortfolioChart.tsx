@@ -2,6 +2,8 @@ import { NextPage } from 'next'
 import { useState } from 'react'
 import LineChart from './LineChart'
 
+import useHidanStore from '../store'
+
 const PortfolioChart: NextPage = () => {
 	const UserData = [
 		{
