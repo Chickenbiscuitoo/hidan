@@ -27,7 +27,7 @@ const PortfolioChart: NextPage = () => {
 				'Dec',
 			]
 			const monthNumber = getMonth(parseISO(data.date))
-			return months[monthNumber + 1]
+			return `${months[monthNumber + 1]} ${data.date.slice(0, 4)}`
 		}),
 		datasets: [
 			{

@@ -4,7 +4,7 @@ import { Chart as ChartJS } from 'chart.js/auto'
 import { NextPage } from 'next'
 
 interface ChartData {
-	labels: number[] | string[]
+	labels: number[] | string[] | any
 	datasets: {
 		label: string
 		data: number[] | string[]
