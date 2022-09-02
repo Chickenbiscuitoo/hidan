@@ -2,11 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { AiFillGithub } from 'react-icons/ai'
 
-type TechnologyCardProps = {
-	name: string
-	description: string
-	documentation: string
-}
+import Header from '../components/Header'
 
 const Home: NextPage = () => {
 	return (
@@ -15,6 +11,10 @@ const Home: NextPage = () => {
 				<title>HIDAN</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
+
+			<header>
+				<Header />
+			</header>
 
 			<main className="min-h-screen flex-1 items-center my-8 p-8">
 				<div>hidan app</div>
