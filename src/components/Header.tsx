@@ -1,7 +1,8 @@
 import { NextPage } from 'next'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { useState } from 'react'
-import { RiLogoutCircleLine } from 'react-icons/ri'
+import { BiLogOutCircle } from 'react-icons/bi'
+import { FiSettings } from 'react-icons/fi'
 
 const Header: NextPage = () => {
 	const { data: session } = useSession({ required: true })
@@ -14,39 +15,32 @@ const Header: NextPage = () => {
 				<a className="btn btn-ghost normal-case text-xl">hidan</a>
 			</div>
 			<div className="flex-none">
-				<div className="">
-					<label className="btn btn-ghost btn-circle">
-						<div className="text-3xl">
-							<RiLogoutCircleLine />
-						</div>
-					</label>
-				</div>
-				<div
-					className="dropdown dropdown-end"
-					onClick={() =>
-						setIsMenuOpen((prevState: boolean) => !prevState)
-					}
-				>
+				<div className="dropdown dropdown-end">
 					<label className="btn btn-ghost btn-circle avatar">
-						<div className="w-10 rounded-full">
+						<div
+							className="w-10 rounded-full"
+							onClick={() =>
+								setIsMenuOpen((prevState) => !prevState)
+							}
+						>
 							{session?.user?.image && (
 								<img src={session?.user?.image} />
 							)}
 						</div>
 					</label>
 					{isMenuOpen && (
-						<ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+						<ul className="menu menu-compact absolute mt-3 p-2 shadow bg-base-100 rounded-box w-50 top-10 right-1">
 							<li>
-								<a className="justify-between">
-									Profile
-									<span className="badge">New</span>
+								<a>
+									<FiSettings />
+									Settings
 								</a>
 							</li>
 							<li>
-								<a>Settings</a>
-							</li>
-							<li>
-								<a>Logout</a>
+								<a>
+									<BiLogOutCircle />
+									Logout
+								</a>
 							</li>
 						</ul>
 					)}
