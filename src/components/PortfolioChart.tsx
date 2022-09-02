@@ -2,13 +2,33 @@ import { NextPage } from 'next'
 import { useState } from 'react'
 import LineChart from './LineChart'
 
+import { getMonth } from 'date-fns'
+import { parseISO } from 'date-fns'
+
 import useHidanStore from '../store'
 
 const PortfolioChart: NextPage = () => {
 	const { historyPortfolioValue } = useHidanStore()
 
 	const [portfolioHistory, setPortfolioHistory] = useState({
-		labels: historyPortfolioValue.map((data) => data.date),
+		labels: historyPortfolioValue.map((data) => {
+			const months = [
+				'Jan',
+				'Feb',
+				'Mar',
+				'Apr',
+				'May',
+				'Jun',
+				'Jul',
+				'Aug',
+				'Sep',
+				'Oct',
+				'Nov',
+				'Dec',
+			]
+			const monthNumber = getMonth(parseISO(data.date))
+			return months[monthNumber + 1]
+		}),
 		datasets: [
 			{
 				label: 'Portfolio Value',

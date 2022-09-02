@@ -4,10 +4,10 @@ import { Chart as ChartJS } from 'chart.js/auto'
 import { NextPage } from 'next'
 
 interface ChartData {
-	labels: string[]
+	labels: number[] | string[]
 	datasets: {
 		label: string
-		data: number[]
+		data: number[] | string[]
 		backgroundColor: string[]
 		borderColor: string
 		borderWidth: number
