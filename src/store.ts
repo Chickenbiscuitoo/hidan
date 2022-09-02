@@ -29,7 +29,7 @@ const useHidanStore = create<StoreSchema>((set) => ({
 		},
 		{
 			date: '2021-02-02',
-			value: 1100000,
+			value: 900000,
 		},
 		{
 			date: '2021-03-03',
@@ -37,7 +37,7 @@ const useHidanStore = create<StoreSchema>((set) => ({
 		},
 		{
 			date: '2021-04-04',
-			value: 1300000,
+			value: 1200000,
 		},
 		{
 			date: '2021-05-05',
@@ -45,7 +45,7 @@ const useHidanStore = create<StoreSchema>((set) => ({
 		},
 		{
 			date: '2021-06-06',
-			value: 1500000,
+			value: 1600000,
 		},
 	],
 
