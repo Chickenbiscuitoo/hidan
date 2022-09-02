@@ -1,9 +1,21 @@
 import { NextPage } from 'next'
-import { signIn } from 'next-auth/react'
+import { useSession, signIn } from 'next-auth/react'
+import { useRouter, NextRouter } from 'next/router'
+import { useEffect } from 'react'
 
 import { AiFillGithub } from 'react-icons/ai'
 
 const login: NextPage = () => {
+	const { data: session } = useSession()
+
+	const router: NextRouter = useRouter()
+
+	useEffect(() => {
+		if (session) {
+			router.push('/')
+		}
+	}, [session?.user?.id])
+
 	return (
 		<div className="mx-10">
 			<main>
@@ -21,7 +33,9 @@ const login: NextPage = () => {
 								source and free forever.
 							</p>
 							<button
-								onClick={() => signIn('google')}
+								onClick={() => {
+									signIn('google')
+								}}
 								className="btn btn-accent"
 							>
 								Sign In with Google
