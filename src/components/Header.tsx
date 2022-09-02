@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import { useSession, signIn, signOut } from 'next-auth/react'
+import { useSession, signOut } from 'next-auth/react'
 import { useState } from 'react'
 import { BiLogOutCircle } from 'react-icons/bi'
 import { FiSettings } from 'react-icons/fi'
@@ -37,7 +37,7 @@ const Header: NextPage = () => {
 								</a>
 							</li>
 							<li>
-								<a>
+								<a onClick={() => signOut()}>
 									<BiLogOutCircle />
 									Logout
 								</a>
