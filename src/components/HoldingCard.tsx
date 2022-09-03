@@ -98,36 +98,42 @@ const HoldingCard: NextPage<HoldingCardProps> = ({
 						</span>
 					</div>
 				</div>
-				{clicked &&
-					historyHolding?.history &&
-					historyHolding.history.map((h) => (
-						<div className="flex w-full mt-3">
-							<div className="grid h-16 w-1/5 flex-grow card bg-base-300 rounded-box place-items-center">
-								<h2 className="card-title">{h.date}</h2>
-							</div>
-							<div className="divider divider-horizontal"></div>
-							<div
-								className={`grid h-16 w-1/5 flex-grow card bg-base-300 rounded-box place-items-center ${
-									h.status === 'buy'
-										? 'bg-success'
-										: 'bg-error'
-								}`}
-							>
-								<h2 className="card-title">
-									{h.status.toUpperCase()}
-								</h2>
-							</div>
-							<div className="divider divider-horizontal"></div>
-							<div className="grid h-16 w-2/5 flex-grow card bg-base-300 rounded-box place-items-center">
-								<span className="inline text-lg">
-									<h2 className="inline font-bold">
-										{h.amount}
+				{clicked && historyHolding?.history && (
+					<div className="max-h-96 overflow-y-auto">
+						{historyHolding.history.map((h, i) => (
+							<div key={i} className="flex w-full mt-3">
+								<div className="grid h-16 w-1/5 flex-grow card bg-base-300 rounded-box place-items-center">
+									<h2 className="card-title">
+										{h.date}
 									</h2>
-									<h2 className="inline">@{h.price}$</h2>
-								</span>
+								</div>
+								<div className="divider divider-horizontal"></div>
+								<div
+									className={`grid h-16 w-1/5 flex-grow card rounded-box place-items-center  ${
+										h.status === 'buy'
+											? 'bg-success'
+											: 'bg-error'
+									}`}
+								>
+									<h2 className="card-title">
+										{h.status.toUpperCase()}
+									</h2>
+								</div>
+								<div className="divider divider-horizontal"></div>
+								<div className="grid h-16 w-2/5 flex-grow card bg-base-300 rounded-box place-items-center">
+									<span className="inline text-lg">
+										<h2 className="inline font-bold">
+											{h.amount}
+										</h2>
+										<h2 className="inline">
+											@{h.price}$
+										</h2>
+									</span>
+								</div>
 							</div>
-						</div>
-					))}
+						))}
+					</div>
+				)}
 			</div>
 		</div>
 	)
