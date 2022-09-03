@@ -74,6 +74,20 @@ const HoldingCard: NextPage<HoldingCardProps> = ({ holding }) => {
 						</span>
 					</div>
 				</div>
+				<div className="flex w-full mt-2">
+					<div className="grid h-16 w-2/5 flex-grow card bg-base-300 rounded-box place-items-center">
+						<h2 className="card-title"></h2>
+					</div>
+					<div className="divider divider-horizontal"></div>
+					<div className="grid h-16 w-3/5 flex-grow card bg-base-300 rounded-box place-items-center">
+						<span className="inline text-lg">
+							<h2 className="inline font-bold">
+								{holding.amount}
+							</h2>
+							<h2 className="inline"> @{holding.price}$</h2>
+						</span>
+					</div>
+				</div>
 			</div>
 		</div>
 	)

@@ -87,6 +87,79 @@ const useHidanStore = create<StoreSchema>((set) => ({
 			value: 101121,
 		},
 	],
+
+	historyHoldings: [
+		{
+			BTC: [
+				{
+					status: 'buy',
+					date: '2021-01-01',
+					amount: 0.0001,
+					price: 20000,
+				},
+				{
+					status: 'sell',
+					date: '2021-02-02',
+					amount: 0.0001,
+					price: 20200,
+				},
+				{
+					status: 'buy',
+					date: '2021-03-03',
+					amount: 0.0002,
+					price: 20000,
+				},
+			],
+		},
+		{
+			ETH: [
+				{
+					status: 'buy',
+					date: '2021-01-01',
+					amount: 0.1,
+					price: 10000,
+				},
+				{
+					status: 'buy',
+					date: '2021-02-02',
+					amount: 0.1,
+					price: 10200,
+				},
+			],
+		},
+		{
+			INTC: [
+				{
+					status: 'buy',
+					date: '2021-01-01',
+					amount: 5,
+					price: 5665,
+				},
+				{
+					status: 'buy',
+					date: '2021-02-02',
+					amount: 5,
+					price: 5665,
+				},
+			],
+		},
+		{
+			AAPL: [
+				{
+					status: 'sell',
+					date: '2021-01-01',
+					amount: 100,
+					price: 100000,
+				},
+				{
+					status: 'sell',
+					date: '2021-02-02',
+					amount: 100,
+					price: 100000,
+				},
+			],
+		},
+	],
 }))
 
 export default useHidanStore
