@@ -16,6 +16,16 @@ interface StoreSchema {
 		price: number
 		value: number
 	}[]
+
+	historyHoldings: {
+		name: string
+		history: {
+			status: string
+			date: string
+			amount: number
+			price: number
+		}[]
+	}[]
 }
 
 const useHidanStore = create<StoreSchema>((set) => ({
@@ -90,7 +100,8 @@ const useHidanStore = create<StoreSchema>((set) => ({
 
 	historyHoldings: [
 		{
-			BTC: [
+			name: 'BTC',
+			history: [
 				{
 					status: 'buy',
 					date: '2021-01-01',
@@ -112,7 +123,8 @@ const useHidanStore = create<StoreSchema>((set) => ({
 			],
 		},
 		{
-			ETH: [
+			name: 'ETH',
+			history: [
 				{
 					status: 'buy',
 					date: '2021-01-01',
@@ -128,7 +140,8 @@ const useHidanStore = create<StoreSchema>((set) => ({
 			],
 		},
 		{
-			INTC: [
+			name: 'INTC',
+			history: [
 				{
 					status: 'buy',
 					date: '2021-01-01',
@@ -144,7 +157,8 @@ const useHidanStore = create<StoreSchema>((set) => ({
 			],
 		},
 		{
-			AAPL: [
+			name: 'AAPL',
+			history: [
 				{
 					status: 'sell',
 					date: '2021-01-01',

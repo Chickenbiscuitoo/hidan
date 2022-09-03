@@ -11,7 +11,7 @@ import HoldingCard from '../components/HoldingCard'
 
 const Home: NextPage = () => {
 	useSession({ required: true })
-	const { currentHoldings } = useHidanStore()
+	const { currentHoldings, historyHoldings } = useHidanStore()
 
 	return (
 		<div className="mx-10">
@@ -29,12 +29,19 @@ const Home: NextPage = () => {
 					<PortfolioChart />
 				</div>
 				<div className="flex flex-col items-center justify-center justify-items-center">
-					{currentHoldings.map((holding) => (
-						<HoldingCard
-							holding={holding}
-							key={holding.symbol}
-						/>
-					))}
+					{currentHoldings.map((holding) => {
+						const hisHolding = historyHoldings.find(
+							(hol) => hol.name === holding.symbol
+						)
+
+						return (
+							<HoldingCard
+								holding={holding}
+								historyHolding={hisHolding}
+								key={holding.symbol}
+							/>
+						)
+					})}
 				</div>
 			</main>
 

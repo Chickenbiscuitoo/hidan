@@ -11,9 +11,23 @@ interface HoldingCardProps {
 		price: number
 		value: number
 	}
+	historyHolding:
+		| {
+				name: string
+				history: {
+					status: string
+					date: string
+					amount: number
+					price: number
+				}[]
+		  }
+		| undefined
 }
 
-const HoldingCard: NextPage<HoldingCardProps> = ({ holding }) => {
+const HoldingCard: NextPage<HoldingCardProps> = ({
+	holding,
+	historyHolding,
+}) => {
 	const profit = holding.value - holding.amount * holding.price
 	const profitPercentage = (
 		(profit / (holding.amount * holding.price)) *
