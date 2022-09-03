@@ -6,7 +6,7 @@ import { BiLogOutCircle } from 'react-icons/bi'
 import { FiSettings } from 'react-icons/fi'
 
 const Header: NextPage = () => {
-	const { data: session } = useSession({ required: true })
+	const { data: session } = useSession()
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -32,7 +32,7 @@ const Header: NextPage = () => {
 						</div>
 					</label>
 					{isMenuOpen && (
-						<ul className="menu menu-compact absolute mt-3 p-2 shadow bg-base-100 rounded-box w-50 top-10 right-1">
+						<ul className="menu menu-compact absolute mt-3 p-2 shadow bg-base-100 rounded-box w-50 top-10 right-1 z-50">
 							<li>
 								<h5 className="font-semibold inline">
 									{session?.user?.name?.split(' ')[0]}
