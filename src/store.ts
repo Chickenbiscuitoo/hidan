@@ -14,6 +14,7 @@ interface StoreSchema {
 		symbol: string
 		amount: number
 		price: number
+		value: number
 	}[]
 }
 
@@ -55,30 +56,35 @@ const useHidanStore = create<StoreSchema>((set) => ({
 			symbol: 'BTC',
 			amount: 0.0001,
 			price: 20000,
+			value: 2,
 		},
 		{
 			name: 'Ethereum',
 			symbol: 'ETH',
 			amount: 0.1,
 			price: 10000,
+			value: 1000,
 		},
 		{
 			name: 'Intel',
 			symbol: 'INTC',
 			amount: 205,
 			price: 100025,
+			value: 20500,
 		},
 		{
 			name: 'Apple',
 			symbol: 'AAPL',
 			amount: 100,
 			price: 100000,
+			value: 10000,
 		},
 		{
 			name: 'Tesla',
 			symbol: 'TSLA',
 			amount: 50,
 			price: 15523,
+			value: 77615,
 		},
 	],
 }))
