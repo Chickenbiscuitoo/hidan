@@ -1,17 +1,21 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useSession } from 'next-auth/react'
-import useHidanStore from '../store'
+import { useSession, signIn } from 'next-auth/react'
+import { useRouter, NextRouter } from 'next/router'
+import { useEffect } from 'react'
 
 import { AiFillGithub } from 'react-icons/ai'
 
-import Header from '../components/Header'
-import PortfolioChart from '../components/PortfolioChart'
-import HoldingCard from '../components/HoldingCard'
+const login: NextPage = () => {
+	const { data: session } = useSession()
 
-const Home: NextPage = () => {
-	useSession({ required: true })
-	const { currentHoldings, historyHoldings } = useHidanStore()
+	const router: NextRouter = useRouter()
+
+	useEffect(() => {
+		if (session) {
+			router.push('/home')
+		}
+	}, [session?.user?.id])
 
 	return (
 		<div className="mx-10">
@@ -20,28 +24,28 @@ const Home: NextPage = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<header>
-				<Header />
-			</header>
-
-			<main className="min-h-screen flex-1 flex flex-col   justify-items-center my-8 p-8">
-				<div className="flex flex-col items-center justify-center justify-items-center">
-					<PortfolioChart />
-				</div>
-				<div className="flex flex-col items-center justify-center justify-items-center">
-					{currentHoldings.map((holding) => {
-						const hisHolding = historyHoldings.find(
-							(hol) => hol.name === holding.symbol
-						)
-
-						return (
-							<HoldingCard
-								holding={holding}
-								historyHolding={hisHolding}
-								key={holding.symbol}
-							/>
-						)
-					})}
+			<main>
+				<div className="hero min-h-screen ">
+					<div className="hero-content text-center">
+						<div className="max-w-md">
+							<h1 className="text-5xl font-bold text-accent">
+								hidan
+							</h1>
+							<h2 className="mt-2">╰(*°▽°*)╯</h2>
+							<p className="py-6">
+								Track your overall portfolio performance in
+								one place. You can track your stocks,
+								crypto, ETF (not NFT) investments. Open
+								source and free forever.
+							</p>
+							<button
+								onClick={() => signIn('google')}
+								className="btn btn-accent"
+							>
+								Sign In with Google
+							</button>
+						</div>
+					</div>
 				</div>
 			</main>
 
@@ -62,4 +66,4 @@ const Home: NextPage = () => {
 	)
 }
 
-export default Home
+export default login
