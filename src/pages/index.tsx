@@ -1,14 +1,17 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useSession } from 'next-auth/react'
+import useHidanStore from '../store'
 
 import { AiFillGithub } from 'react-icons/ai'
 
 import Header from '../components/Header'
 import PortfolioChart from '../components/PortfolioChart'
+import HoldingCard from '../components/HoldingCard'
 
 const Home: NextPage = () => {
 	useSession({ required: true })
+	const { currentHoldings } = useHidanStore()
 
 	return (
 		<div className="mx-10">
@@ -21,8 +24,13 @@ const Home: NextPage = () => {
 				<Header />
 			</header>
 
-			<main className="min-h-screen flex-1 items-center my-8 p-8">
+			<main className="min-h-screen flex-1 flex flex-col justify-items-center my-8 p-8">
 				<PortfolioChart />
+				<div className="flex flex-col items-center justify-center justify-items-center">
+					{currentHoldings.map((holding) => (
+						<HoldingCard holding={holding} />
+					))}
+				</div>
 			</main>
 
 			<footer className="flex flex-row p-4 border-t-2 justify-center">

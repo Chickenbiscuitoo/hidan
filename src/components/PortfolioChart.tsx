@@ -41,9 +41,11 @@ const PortfolioChart: NextPage = () => {
 	})
 
 	return (
-		<div className="w-full">
-			<div className="sm:w-full lg:w-3/5">
-				<LineChart chartData={portfolioHistory} />
+		<div className="card sm:w-full lg:w-3/5 bg-base-100 shadow-md mb-5">
+			<div className="card-body">
+				<div className="sm:w-full lg:w-3/5">
+					<LineChart chartData={portfolioHistory} />
+				</div>
 			</div>
 		</div>
 	)
