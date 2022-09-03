@@ -50,18 +50,19 @@ const Home: NextPage = () => {
 						)
 					})}
 				</div>
+				{!clicked && (
+					<button
+						className="btn btn-primary mt-10"
+						onClick={handleClick}
+					>
+						Add Holding
+					</button>
+				)}
 				{clicked && (
 					<div>
-						<CardForm />
+						<CardForm closeForm={handleClick} />
 					</div>
 				)}
-
-				<button
-					className="btn btn-primary mt-10"
-					onClick={handleClick}
-				>
-					Add Holding
-				</button>
 			</main>
 
 			<footer className="flex flex-row p-4 border-t-2 justify-center">
