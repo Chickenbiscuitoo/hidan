@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import { useState } from 'react'
 
 import { AiOutlineArrowUp } from 'react-icons/ai'
 import { AiOutlineArrowDown } from 'react-icons/ai'
@@ -28,11 +29,17 @@ const HoldingCard: NextPage<HoldingCardProps> = ({
 	holding,
 	historyHolding,
 }) => {
+	const [clicked, setClicked] = useState(false)
+
 	const profit = holding.value - holding.amount * holding.price
 	const profitPercentage = (
 		(profit / (holding.amount * holding.price)) *
 		100
 	).toFixed(2)
+
+	const handleClick = () => {
+		setClicked((prevState) => !prevState)
+	}
 
 	const profitColor = () => {
 		if (profit === 0) {
@@ -55,7 +62,10 @@ const HoldingCard: NextPage<HoldingCardProps> = ({
 	}
 
 	return (
-		<div className="card  sm:w-full lg:w-3/5 bg-base-100 shadow-md mb-2">
+		<div
+			className="card sm:w-full lg:w-3/5 bg-base-100 shadow-md mb-2 hover:shadow-xl transition-shadow duration-200 cursor-pointer"
+			onClick={handleClick}
+		>
 			<div className="card-body">
 				<div className="flex w-full">
 					<div className="grid h-16 w-1/5 flex-grow card bg-base-300 rounded-box place-items-center">
@@ -88,20 +98,36 @@ const HoldingCard: NextPage<HoldingCardProps> = ({
 						</span>
 					</div>
 				</div>
-				<div className="flex w-full mt-2">
-					<div className="grid h-16 w-2/5 flex-grow card bg-base-300 rounded-box place-items-center">
-						<h2 className="card-title"></h2>
-					</div>
-					<div className="divider divider-horizontal"></div>
-					<div className="grid h-16 w-3/5 flex-grow card bg-base-300 rounded-box place-items-center">
-						<span className="inline text-lg">
-							<h2 className="inline font-bold">
-								{holding.amount}
-							</h2>
-							<h2 className="inline"> @{holding.price}$</h2>
-						</span>
-					</div>
-				</div>
+				{clicked &&
+					historyHolding?.history &&
+					historyHolding.history.map((h) => (
+						<div className="flex w-full mt-3">
+							<div className="grid h-16 w-1/5 flex-grow card bg-base-300 rounded-box place-items-center">
+								<h2 className="card-title">{h.date}</h2>
+							</div>
+							<div className="divider divider-horizontal"></div>
+							<div
+								className={`grid h-16 w-1/5 flex-grow card bg-base-300 rounded-box place-items-center ${
+									h.status === 'buy'
+										? 'bg-success'
+										: 'bg-error'
+								}`}
+							>
+								<h2 className="card-title">
+									{h.status.toUpperCase()}
+								</h2>
+							</div>
+							<div className="divider divider-horizontal"></div>
+							<div className="grid h-16 w-2/5 flex-grow card bg-base-300 rounded-box place-items-center">
+								<span className="inline text-lg">
+									<h2 className="inline font-bold">
+										{h.amount}
+									</h2>
+									<h2 className="inline">@{h.price}$</h2>
+								</span>
+							</div>
+						</div>
+					))}
 			</div>
 		</div>
 	)
