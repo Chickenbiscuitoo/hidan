@@ -24,8 +24,10 @@ const Home: NextPage = () => {
 				<Header />
 			</header>
 
-			<main className="min-h-screen flex-1 flex flex-col justify-items-center my-8 p-8">
-				<PortfolioChart />
+			<main className="min-h-screen flex-1 flex flex-col   justify-items-center my-8 p-8">
+				<div className="flex flex-col items-center justify-center justify-items-center">
+					<PortfolioChart />
+				</div>
 				<div className="flex flex-col items-center justify-center justify-items-center">
 					{currentHoldings.map((holding) => (
 						<HoldingCard holding={holding} />

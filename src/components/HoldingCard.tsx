@@ -11,7 +11,7 @@ interface HoldingCardProps {
 
 const HoldingCard: NextPage<HoldingCardProps> = ({ holding }) => {
 	return (
-		<div className="card w-96 bg-base-100 shadow-xl">
+		<div className="card  sm:w-full lg:w-3/5 bg-base-100 shadow-md mb-2">
 			<div className="card-body">
 				<div className="flex w-full">
 					<div className="grid h-16 flex-grow card bg-base-300 rounded-box place-items-center">
