@@ -100,6 +100,16 @@ const HoldingCard: NextPage<HoldingCardProps> = ({
 				</div>
 				{clicked && historyHolding?.history && (
 					<div className="max-h-96 overflow-y-auto">
+						<div className="flex w-full mt-3 mb-5">
+							<div className="grid h-16 w-1/5 flex-grow card rounded-box place-items-center btn btn-outline btn-error">
+								<h2 className="card-title">delete</h2>
+							</div>
+							<div className="divider divider-horizontal"></div>
+							<div className="grid h-16 w-1/5 flex-grow card rounded-box place-items-center btn btn-outline btn-info">
+								<h2 className="card-title">update</h2>
+							</div>
+						</div>
+
 						{historyHolding.history.map((h, i) => (
 							<div key={i} className="flex w-full mt-3">
 								<div className="grid h-16 w-1/5 flex-grow card bg-base-300 rounded-box place-items-center">
