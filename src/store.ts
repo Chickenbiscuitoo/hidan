@@ -68,9 +68,9 @@ const useHidanStore = create<StoreSchema>((set) => ({
 		{
 			name: 'Intel',
 			symbol: 'INTC',
-			amount: 205,
-			price: 100025,
-			value: 20500,
+			amount: 5,
+			price: 5665,
+			value: 100000,
 		},
 		{
 			name: 'Apple',
@@ -83,8 +83,8 @@ const useHidanStore = create<StoreSchema>((set) => ({
 			name: 'Tesla',
 			symbol: 'TSLA',
 			amount: 50,
-			price: 15523,
-			value: 77615,
+			price: 200,
+			value: 101121,
 		},
 	],
 }))

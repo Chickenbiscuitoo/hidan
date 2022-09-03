@@ -30,7 +30,10 @@ const Home: NextPage = () => {
 				</div>
 				<div className="flex flex-col items-center justify-center justify-items-center">
 					{currentHoldings.map((holding) => (
-						<HoldingCard holding={holding} />
+						<HoldingCard
+							holding={holding}
+							key={holding.symbol}
+						/>
 					))}
 				</div>
 			</main>
