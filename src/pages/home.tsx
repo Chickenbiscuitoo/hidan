@@ -2,16 +2,23 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useSession } from 'next-auth/react'
 import useHidanStore from '../store'
+import { useState } from 'react'
 
 import { AiFillGithub } from 'react-icons/ai'
 
 import Header from '../components/Header'
 import PortfolioChart from '../components/PortfolioChart'
 import HoldingCard from '../components/HoldingCard'
+import CardForm from '../components/CardForm'
 
 const Home: NextPage = () => {
 	useSession({ required: true })
 	const { currentHoldings, historyHoldings } = useHidanStore()
+
+	const [clicked, setClicked] = useState(false)
+	const handleClick = () => {
+		setClicked((prevState) => !prevState)
+	}
 
 	return (
 		<div className="mx-10">
@@ -43,6 +50,18 @@ const Home: NextPage = () => {
 						)
 					})}
 				</div>
+				{clicked && (
+					<div>
+						<CardForm />
+					</div>
+				)}
+
+				<button
+					className="btn btn-primary mt-10"
+					onClick={handleClick}
+				>
+					Add Holding
+				</button>
 			</main>
 
 			<footer className="flex flex-row p-4 border-t-2 justify-center">
@@ -53,7 +72,7 @@ const Home: NextPage = () => {
 					className="flex flex-row items-center p-2 gap-2"
 				>
 					Created by Chickenbiscuitoo
-					<span className="">
+					<span>
 						<AiFillGithub />
 					</span>
 				</a>
