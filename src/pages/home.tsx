@@ -65,7 +65,7 @@ const Home: NextPage = () => {
 					</div>
 				)}
 
-				<div className="flex flex-col items-center justify-center justify-items-center">
+				<div className="flex flex-col items-center justify-center justify-items-center mt-10">
 					<PortfolioPie />
 				</div>
 			</main>

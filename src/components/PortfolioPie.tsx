@@ -16,7 +16,8 @@ const PortfolioPie: NextPage = () => {
 				label: 'Portfolio Value',
 				data: currentHoldings.map((holding) => holding.value),
 				backgroundColor: ['#4e4e94'],
-				borderWidth: 2,
+				borderColor: '#9CA3DB',
+				borderWidth: 5,
 			},
 		],
 	})
