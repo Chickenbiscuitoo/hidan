@@ -10,6 +10,7 @@ import Header from '../components/Header'
 import PortfolioChart from '../components/PortfolioChart'
 import HoldingCard from '../components/HoldingCard'
 import CardForm from '../components/CardForm'
+import PortfolioPie from '../components/PortfolioPie'
 
 const Home: NextPage = () => {
 	useSession({ required: true })
@@ -63,6 +64,10 @@ const Home: NextPage = () => {
 						<CardForm closeForm={handleClick} />
 					</div>
 				)}
+
+				<div className="flex flex-col items-center justify-center justify-items-center">
+					<PortfolioPie />
+				</div>
 			</main>
 
 			<footer className="flex flex-row p-4 border-t-2 justify-center">
