@@ -27,7 +27,10 @@ const Header: NextPage = () => {
 							}
 						>
 							{session?.user?.image && (
-								<img src={session?.user?.image} />
+								<img
+									src={session?.user?.image}
+									referrerPolicy="no-referrer"
+								/>
 							)}
 						</div>
 					</label>
