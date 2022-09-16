@@ -7,6 +7,17 @@ import useHidanStore from '../store'
 const PortfolioPie: NextPage = () => {
 	const { currentHoldings } = useHidanStore()
 
+	const generatePastelColor = () => {
+		let R = Math.floor(Math.random() * 127 + 127)
+		let G = Math.floor(Math.random() * 127 + 127)
+		let B = Math.floor(Math.random() * 127 + 127)
+
+		let rgb = (R << 16) + (G << 8) + B
+		return `#${rgb.toString(16)}`
+	}
+
+	const colors = currentHoldings.map(() => generatePastelColor())
+
 	const [portfolioHoldings, setPortfolioHolding] = useState({
 		labels: currentHoldings.map((holding) => {
 			return holding.symbol
@@ -15,9 +26,9 @@ const PortfolioPie: NextPage = () => {
 			{
 				label: 'Portfolio Value',
 				data: currentHoldings.map((holding) => holding.value),
-				backgroundColor: ['#4e4e94'],
+				backgroundColor: [...colors],
 				borderColor: '#9CA3DB',
-				borderWidth: 5,
+				borderWidth: 2,
 			},
 		],
 	})

@@ -50,20 +50,21 @@ const Home: NextPage = () => {
 							/>
 						)
 					})}
+
+					{!clicked && (
+						<button
+							className="btn btn-primary mt-10"
+							onClick={handleClick}
+						>
+							Add Holding
+						</button>
+					)}
+					{clicked && (
+						<div className="flex place-content-center w-full">
+							<CardForm closeForm={handleClick} />
+						</div>
+					)}
 				</div>
-				{!clicked && (
-					<button
-						className="btn btn-primary mt-10"
-						onClick={handleClick}
-					>
-						Add Holding
-					</button>
-				)}
-				{clicked && (
-					<div>
-						<CardForm closeForm={handleClick} />
-					</div>
-				)}
 
 				<div className="flex flex-col items-center justify-center justify-items-center mt-10">
 					<PortfolioPie />
