@@ -1,8 +1,9 @@
 import create from 'zustand'
+import axios from 'axios'
 
 interface StoreSchema {
 	currentPortfolioValue: number
-	setCurrentPortfolioValue: (value: number) => void
+	getCurrentPortfolioValue: () => void
 
 	historyPortfolioValue: {
 		date: string
@@ -29,9 +30,15 @@ interface StoreSchema {
 }
 
 const useHidanStore = create<StoreSchema>((set) => ({
-	currentPortfolioValue: 1200777,
-	setCurrentPortfolioValue: (value: number) =>
-		set({ currentPortfolioValue: value }),
+	currentPortfolioValue: 0,
+	getCurrentPortfolioValue: async () => {
+		const API_URL = 'http://localhost:3000/api/'
+
+		const { data } = await axios.get(API_URL + 'portfolio/value')
+		const { portfolioValue } = data
+
+		set({ currentPortfolioValue: portfolioValue })
+	},
 
 	historyPortfolioValue: [
 		{

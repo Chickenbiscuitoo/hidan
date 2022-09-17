@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useSession } from 'next-auth/react'
 import useHidanStore from '../store'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { AiFillGithub } from 'react-icons/ai'
 
@@ -14,7 +14,18 @@ import PortfolioPie from '../components/PortfolioPie'
 
 const Home: NextPage = () => {
 	useSession({ required: true })
-	const { currentHoldings, historyHoldings } = useHidanStore()
+	const {
+		currentHoldings,
+		historyHoldings,
+		currentPortfolioValue,
+		getCurrentPortfolioValue,
+	} = useHidanStore()
+
+	useEffect(() => {
+		if (currentPortfolioValue === 0) {
+			getCurrentPortfolioValue()
+		}
+	}, [currentPortfolioValue])
 
 	const [clicked, setClicked] = useState(false)
 	const handleClick = () => {
@@ -32,7 +43,13 @@ const Home: NextPage = () => {
 				<Header />
 			</header>
 
-			<main className="min-h-screen flex-1 flex flex-col   justify-items-center my-8 p-8">
+			<main className="min-h-screen flex-1 flex flex-col justify-items-center my-8 p-8">
+				<div className="flex flex-col items-center justify-center justify-items-center bg-base-300 p-5 mb-5 rounded-2xl">
+					<h5 className="card-title font-bold text-2xl">
+						{currentPortfolioValue}
+						<span className="text-success inline">$</span>
+					</h5>
+				</div>
 				<div className="flex flex-col items-center justify-center justify-items-center">
 					<PortfolioChart />
 				</div>
