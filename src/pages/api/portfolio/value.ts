@@ -43,9 +43,19 @@ const value = async (req: NextApiRequest, res: NextApiResponse) => {
 				response.data['Time Series (Daily)'],
 		}))
 
-		let today = new Date().toISOString().slice(0, 10)
+		const prices = results.map((result) => {
+			const symbol = Object.keys(result)[0]
+			const price =
+				Object.values(result)[0][
+					Object.keys(Object.values(result)[0])[0] || '0'
+				]['4. close']
 
-		return res.status(200).json(results)
+			return price
+		})
+
+		const totalValue = prices.reduce((a, b) => +a + +b, 0)
+
+		return res.status(200).json({ portfolioValue: totalValue })
 	} catch (error) {
 		let message = 'Unknown Error'
 
