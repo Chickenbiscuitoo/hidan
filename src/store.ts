@@ -35,9 +35,35 @@ const useHidanStore = create<StoreSchema>((set) => ({
 		const API_URL = 'http://localhost:3000/api/'
 
 		const { data } = await axios.get(API_URL + 'portfolio/value')
-		const { portfolioValue } = data
 
-		set({ currentPortfolioValue: portfolioValue })
+		// TODO: GET FROM DB
+		const holdings = [{ INTC: 3 }, { AAPL: 5 }, { TSLA: 10 }]
+
+		if (holdings.length === 0) {
+			set({ currentPortfolioValue: 0 })
+		}
+
+		const portfolioValue = () => {
+			let value = 0
+			holdings.map((holding) => {
+				const symbol = Object.keys(holding)[0]
+				const amount = Object.values(holding)[0]
+
+				interface StockData {
+					[key: string]: number | string
+				}
+
+				const stockData: StockData = data.find(
+					(item: any) => Object.keys(item)[0] === symbol
+				)
+
+				// TODO: FIX TS ERROR
+				const price = Object?.entries(stockData)[0][1]
+				value += amount * Number(price)
+			})
+			return Math.round(value * 100) / 100
+		}
+		set({ currentPortfolioValue: portfolioValue() })
 	},
 
 	historyPortfolioValue: [
